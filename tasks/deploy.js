@@ -1,9 +1,12 @@
 var Deployer = function( o ) {
 
     this.grunt = o.grunt
+    this.config = this.grunt.mangroveConfig
 
-    this.ghPagesDeploy = this.grunt.config.get( 'config.deploy.gh_pages' )
-    this.privateHostDeploy = this.grunt.config.get( 'config.deploy.private_host' )
+    // console.log(this.grunt.mangroveConfig)
+    this.ghPagesDeploy = this.config.get( 'deploy.gh_pages' )
+    this.privateHostDeploy = this.config.get( 'deploy.private_host' )
+    this.isPrivate = this.config.get( 'private' )
 
     this.setExecGruntConfig()
     this.skipBuild = this.grunt.option( 'skipBuild' )
@@ -28,7 +31,7 @@ Deployer.prototype = {
 
         var tasks = []
 
-        if ( this.ghPagesDeploy )
+        if ( ! this.isPrivate && this.ghPagesDeploy  )
             tasks.push( 'publish_gh_pages' )
 
         if ( this.privateHostDeploy )
@@ -44,7 +47,7 @@ module.exports = function( grunt ) {
     grunt.registerTask( 'deploy', function() {
 
         new Deployer( {
-            grunt: grunt,
+            grunt: grunt
         } )
 
     } )
