@@ -6,6 +6,9 @@
 Simple 3d simulation of Newton's law of universal gravitation with sample Three.js project.
 
 
+## Demo ##
+See [cagosta.github.io/gravitation](http://cagosta.github.io/gravitation)  
+( and open the console )
 
 
 ## Install ##

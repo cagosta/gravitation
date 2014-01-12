@@ -20,6 +20,8 @@
         "email": "cyril.agosta.dev@gmail.com"
     },
     "deploy": {
+        "gh_pages": true,
+        "private_host": true,
         "host": "mangrove.dk",
         "dir": "/var/www/mangrove.dk/gravitation",
         "user": "cyril"
