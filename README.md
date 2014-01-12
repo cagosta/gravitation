@@ -6,6 +6,35 @@
 Simple 3d simulation of Newton's law of universal gravitation with sample Three.js project.
 
 
+## Usage ##  
+
+Consists of two main classes: Univers and Body in `app/` and a sample project with Three.js in `app/sampleProject`. 
+
+```js
+require( ['gravitation/Univers'], function( Univers ){
+    
+    var univers = new Univers() // see app/Univers.js#+options for different options
+    univers.buildBody({ // see app/Univers.js#buildRandomBody as an example
+        position: [ 0, 0, 0],
+        velocity: [ 1, 2, 3 ],
+        rotation: [ 3, 4, 5 ]
+    })
+
+    univers.bodies // your bodies instances are here
+
+    var update = function( ){
+        univers.step()
+        requestAnimationFrame(update)
+    }
+
+    update()
+
+})
+```
+
+or just read `app/sampleProject/SampleGravitationProject.js` 
+
+
 ## Demo ##
 See [cagosta.github.io/gravitation](http://cagosta.github.io/gravitation) 
 

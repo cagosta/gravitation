@@ -80,7 +80,7 @@ define( [
 
 		},
 
-		buildView: function( i ) {
+		buildView: function( i ) { // dirty, todo clean this
 
 			var body = this.bodies[ i ],
 				cubeSize = 20,
@@ -119,8 +119,6 @@ define( [
 			this.scene.add( object )
 
 		},
-
-
 
 
 		onDocumentMouseMove: function( event ) {

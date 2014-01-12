@@ -3,14 +3,14 @@ define( [
 	'Array.nocomplex/all',
 	'mangrove-utils/bindPolyfill',
 	'./SampleGravitationThreeScene',
-	'./SampleUnivers'
- ], function( Seed, all, bind, ThreeView, Univers ) {
+	'./SampleUnivers',
+	'requestAnimationFrame/requestAnimationFrame'
+ ], function( Seed, all, bind, ThreeView, Univers, requestAnimationFrame ) {
 
 	return Seed.extend( {
 
 		'+options': {
-			bodyCount: 12,
-			fps: 60
+			bodyCount: 12
 		},
 
 		'+constructor': function() {
@@ -43,7 +43,7 @@ define( [
 
 			this.univers.step()
 			this.threeView.render( this.univers.bodies )
-			setTimeout( this.animate.bind( this ), 1000 / this.fps )
+			requestAnimationFrame(this.animate.bind( this ))
 
 		}
 

@@ -16,7 +16,7 @@
     "threejs": "*",
     "Array.nocomplex": "~0.0.19",
     "mangrove-utils": "~0.0.23",
-    "requestAnimationFrame": "~0.0.12"
+    "requestAnimationFrame": "~0.0.x"
   },
   "devDependencies": {
     "sinonjs": "~1.7.3",
