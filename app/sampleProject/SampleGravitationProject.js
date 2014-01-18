@@ -21,8 +21,8 @@ define( [
 			} )
 			this.buildThreeView()
 
+			this._paused = true
 			this.play()
-			setTimeout(this.pause, 1000 )
 
 		},
 
@@ -41,8 +41,10 @@ define( [
 		},
 
 		play: function() {
-			this._paused = false
-			this.loop()
+			if ( this._paused ){
+				this._paused = false
+				this.loop()
+			}
 		},
 
 		loop: function() {
