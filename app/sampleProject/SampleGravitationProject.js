@@ -21,7 +21,8 @@ define( [
 			} )
 			this.buildThreeView()
 
-			this.animate()
+			this.play()
+			setTimeout(this.pause, 1000 )
 
 		},
 
@@ -39,12 +40,22 @@ define( [
 
 		},
 
-		animate: function() {
+		play: function() {
+			this._paused = false
+			this.loop()
+		},
+
+		loop: function() {
 
 			this.univers.step()
 			this.threeView.render( this.univers.bodies )
-			requestAnimationFrame(this.animate.bind( this ))
+			if ( !this._paused )
+				requestAnimationFrame( this.loop.bind( this ) )
 
+		},
+
+		pause: function() {
+			this._paused = true
 		}
 
 
