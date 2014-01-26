@@ -1,6 +1,9 @@
 define( [
 	'Seed/Seed',
- ], function( Seed ) {
+	'Pointer/Pointer'
+ ], function( Seed, Pointer ) {
+
+ 	var pointer = new Pointer
 
 	return Seed.extend( {
 
@@ -44,11 +47,26 @@ define( [
 
 		initEvents: function() {
 
-			document.addEventListener( 'mousemove', this.onDocumentMouseMove.bind( this ), false )
-			document.addEventListener( 'mousedown', this.onDocumentMouseDown.bind( this ), false )
+			pointer.on('move', this.onPointerMove.bind( this ))
+			// document.addEventListener( 'mousemove', this.onDocumentMouseMove.bind( this ), false )
+			// document.addEventListener( 'mousedown', this.onDocumentMouseDown.bind( this ), false )
 			window.addEventListener( 'resize', this.onWindowResize.bind( this ), false )
 
 		},
+
+
+		onPointerMove: function(  ) {
+
+			this.accelerate++
+			this.views.each( this.updateBodyMass.bind( this ) )
+			setTimeout( function() {
+				this.accelerate--
+				this.views.each( this.updateBodyMass.bind( this ) )
+			}.bind( this ), 25 * this.accelerate )
+			this.mousePosition = pointer.getPosition().minus( this.windowSize.divide( 2 ) )
+
+		},
+
 
 		buildEl: function() {
 			this.el = document.createElement( 'div' )
@@ -120,18 +138,6 @@ define( [
 
 		},
 
-
-		onDocumentMouseMove: function( event ) {
-
-			this.accelerate++
-			this.views.each( this.updateBodyMass.bind( this ) )
-			setTimeout( function() {
-				this.accelerate--
-				this.views.each( this.updateBodyMass.bind( this ) )
-			}.bind( this ), 25 * this.accelerate )
-			this.mousePosition = [ event.clientX, event.clientY ].minus( this.windowSize.divide( 2 ) )
-
-		},
 
 		updateBodyMass: function( view ) {
 			this._a.univers.dt = this.accelerate / 500 + 0.1 // dirty

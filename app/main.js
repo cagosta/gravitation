@@ -114,7 +114,8 @@ requirejs.config( {
         Seed: 'bower_components/Seed/app',
         'Array.nocomplex': 'bower_components/Array.nocomplex/app',
         'mangrove-utils': 'bower_components/mangrove-utils/app',
-        requestAnimationFrame: 'bower_components/requestAnimationFrame/app'
+        requestAnimationFrame: 'bower_components/requestAnimationFrame/app',
+        Pointer: 'bower_components/Pointer/app'
     }
 } )
 
